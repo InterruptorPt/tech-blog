@@ -1,0 +1,54 @@
+/*! purgecss start ignore */
+
+:root {
+  color-scheme: light dark;
+
+  --nav-height: 60px;
+
+  @screen md {
+    --nav-height: 70px;
+  }
+}
+
+body {
+  @apply font-body;
+}
+
+*:focus {
+  outline: 1px dotted currentColor;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-display font-bold;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  main {
+    flex: 1 0 auto;
+  }
+}
+
+#nav {
+  min-height: var(--nav-height);
+}
+
+/*! purgecss end ignore */
+
+*:disabled {
+  cursor: not-allowed;
+}
+
+@screen dark-mode {
+  main img {
+    filter: brightness(0.8) contrast(1.2);
+  }
+}

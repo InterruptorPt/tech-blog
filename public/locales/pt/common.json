@@ -1,0 +1,7 @@
+{
+  "error": {
+    "404": "Não encontrámos a página",
+    "500": "Qualquer coisa correu mal"
+  },
+  "helloWorld": "Ola, mundo!"
+}
