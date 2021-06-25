@@ -5,7 +5,7 @@ const spacing = require('./config/tailwind/spacing')
 const typography = require('./config/tailwind/typography')
 
 module.exports = {
-  darkMode: 'media',
+  darkMode: 'class',
   important: true,
   theme: {
     fontFamily: {
@@ -16,7 +16,6 @@ module.exports = {
       colors,
       screens: {
         'dark-mode': { raw: '(prefers-color-scheme: dark)' },
-        // 'light-mode': { raw: '(prefers-color-scheme: light)' },
       },
       spacing,
       typography,

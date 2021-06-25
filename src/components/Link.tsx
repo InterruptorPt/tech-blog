@@ -9,7 +9,7 @@ type Props = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> &
       }
   )
 
-const Link: React.FC<Props> = ({ children, ...props }) => {
+export const Link: React.FC<Props> = ({ children, ...props }) => {
   if ('isExternal' in props) {
     const { isExternal, href, ...anchorProps } = props
 
@@ -28,6 +28,7 @@ const Link: React.FC<Props> = ({ children, ...props }) => {
     passHref,
     prefetch,
     href,
+    locale,
     ...anchorProps
   } = props
 
@@ -40,11 +41,10 @@ const Link: React.FC<Props> = ({ children, ...props }) => {
       shallow={shallow}
       passHref={passHref}
       prefetch={prefetch}
+      locale={locale}
     >
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a {...anchorProps}>{children}</a>
     </NextLink>
   )
 }
-
-export default Link
