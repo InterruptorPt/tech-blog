@@ -47,7 +47,7 @@ h6 {
   cursor: not-allowed;
 }
 
-@screen dark-mode {
+html.dark {
   main img {
     filter: brightness(0.8) contrast(1.2);
   }

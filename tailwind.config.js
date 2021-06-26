@@ -14,14 +14,13 @@ module.exports = {
     },
     extend: {
       colors,
-      screens: {
-        'dark-mode': { raw: '(prefers-color-scheme: dark)' },
-      },
       spacing,
       typography,
     },
   },
-  variants: {},
+  variants: {
+    typography: ['responsive', 'dark'],
+  },
   plugins: [
     require('@tailwindcss/typography'),
     require('./config/tailwind/plugins/chunkyUnderlines'),
