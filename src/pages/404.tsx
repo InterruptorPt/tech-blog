@@ -1,5 +1,9 @@
 import { useTranslation } from 'next-i18next'
 
+import { enhanceStaticProps } from 'utils/next/enhanceStaticProps'
+
+export const getStaticProps = enhanceStaticProps(async () => ({ props: {} }))
+
 const Custom404: React.FC = () => {
   const { t } = useTranslation()
 
