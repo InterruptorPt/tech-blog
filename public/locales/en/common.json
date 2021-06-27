@@ -3,8 +3,10 @@
     "404": "Page not found",
     "500": "Something went wrong"
   },
-  "helloWorld": "Hello, world!",
   "site": {
-    "title": "Interruptor Tech"
+    "title": {
+      "logoAlt": "Interruptor",
+      "tech": "tech"
+    }
   }
 }

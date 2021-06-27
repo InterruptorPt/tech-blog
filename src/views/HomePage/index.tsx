@@ -1,7 +1,7 @@
 import React from 'react'
-import { useTranslation } from 'next-i18next'
 
 import { Link } from 'components/Link'
+import { useDateFormatter } from 'utils/dates/useDateFormatter'
 import { BlogPageProps } from 'views/BlogPage'
 
 export type HomePageProps = {
@@ -12,20 +12,45 @@ export type HomePageProps = {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ posts }) => {
-  const { t } = useTranslation()
+  const formatDate = useDateFormatter({
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
 
   return (
     <>
-      <h1>{t('helloWorld')}</h1>
-
-      <ul>
+      <ul className="max-w-screen-sm mx-auto list-none my-4 md:my-8 space-y-8">
         {posts.map((post) => {
+          const { title, date, description } = post.data
+
           return (
             <li key={post.slug}>
-              <Link href={`/blog/${post.slug}`}>
-                <h2>{post.data.title}</h2>
-                <p>{post.data.description}</p>
-              </Link>
+              <article
+                className="space-y-2"
+                itemScope
+                itemType="http://schema.org/Article"
+              >
+                <header className="space-y-2">
+                  <h2 className="text-xl md:text-2xl font-bold inline">
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="chunky-underline-violet-100 dark:chunky-underline-violet-600"
+                      itemProp="url"
+                    >
+                      <span itemProp="headline">{title}</span>
+                    </Link>
+                  </h2>
+                  {date && (
+                    <small className="block text-xs font-semibold text-violet-700 dark:text-violet-200">
+                      {formatDate(date)}
+                    </small>
+                  )}
+                </header>
+                <section>
+                  <p itemProp="description">{description}</p>
+                </section>
+              </article>
             </li>
           )
         })}

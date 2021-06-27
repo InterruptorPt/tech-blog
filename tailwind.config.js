@@ -5,8 +5,8 @@ const spacing = require('./config/tailwind/spacing')
 const typography = require('./config/tailwind/typography')
 
 module.exports = {
+  mode: 'jit',
   darkMode: 'class',
-  important: true,
   theme: {
     fontFamily: {
       display: ['Manrope', ...tailwindDefaults.fontFamily.sans],
