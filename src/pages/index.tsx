@@ -1,11 +1,46 @@
-import { useTranslation } from 'next-i18next'
+import fs from 'fs/promises'
+import matter from 'gray-matter'
+import path from 'path'
 
 import { enhanceStaticProps } from 'utils/next/enhanceStaticProps'
+import { BLOG_FILES_FOLDER } from 'utils/server'
+import { HomePage, HomePageProps } from 'views/HomePage'
 
-export const getStaticProps = enhanceStaticProps(async () => ({ props: {} }))
+export const getStaticProps = enhanceStaticProps<HomePageProps>(
+  async ({ locale }) => {
+    const folderContents = await fs.readdir(BLOG_FILES_FOLDER, {
+      withFileTypes: true,
+    })
 
-export default function Home() {
-  const { t } = useTranslation()
+    const postFiles = folderContents.filter((f) => {
+      const [, language] = f.name.split('.')
 
-  return <h1>{t('helloWorld')}</h1>
-}
+      return language === locale
+    })
+
+    const posts = await Promise.all(
+      postFiles.map(async (file) => {
+        const source = await fs.readFile(
+          path.join(BLOG_FILES_FOLDER, file.name),
+        )
+        const [slug, language] = file.name.split('.')
+
+        const { data } = matter(source)
+
+        return { data, slug, language }
+      }),
+    )
+
+    const postsByLanguage = posts
+      .filter(({ language }) => language === locale)
+      .map(({ data, slug }) => ({ data, slug }))
+
+    return {
+      props: {
+        posts: postsByLanguage,
+      },
+    }
+  },
+)
+
+export default HomePage
