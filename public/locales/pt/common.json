@@ -3,6 +3,13 @@
     "404": "Não encontrámos a página",
     "500": "Qualquer coisa correu mal"
   },
+  "footer": {
+    "licence": {
+      "description": "Conteúdo licenciado sob CC BY-SA",
+      "link": "https://creativecommons.org/licenses/by-sa/4.0/deed.pt",
+      "title": "CC BY-SA"
+    }
+  },
   "site": {
     "title": {
       "logoAlt": "Interruptor",

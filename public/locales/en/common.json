@@ -3,6 +3,13 @@
     "404": "Page not found",
     "500": "Something went wrong"
   },
+  "footer": {
+    "licence": {
+      "description": "Content licenced under CC BY-SA",
+      "link": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+      "title": "CC BY-SA"
+    }
+  },
   "site": {
     "title": {
       "logoAlt": "Interruptor",

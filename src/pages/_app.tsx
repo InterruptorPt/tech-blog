@@ -5,6 +5,7 @@ import { Layout } from 'components/Layout'
 
 import 'tailwindcss/tailwind.css'
 import 'styles/main.scss'
+import 'styles/fonts.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { MDXProvider } from '@mdx-js/react'
 import clsx from 'clsx'
 
+import { Footer } from './Footer'
 import { Link } from './Link'
 import { LocaleChanger } from './LocaleChanger'
 import { ThemeToggle } from './ThemeToggle'
@@ -67,6 +68,7 @@ export const Layout: React.FC = (props) => {
           {...props}
         />
       </MDXProvider>
+      <Footer />
     </>
   )
 }
