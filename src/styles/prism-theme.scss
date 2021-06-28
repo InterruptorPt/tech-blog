@@ -1,0 +1,166 @@
+/* Generated with http://k88hudson.github.io/syntax-highlighting-theme-generator/www */
+/* http://k88hudson.github.io/react-markdocs */
+/**
+ * @author k88hudson
+ *
+ * Based on prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+/*********************************************************
+* General
+*/
+body .prose .remark-highlight {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    color: theme("colors.violet.50");
+    font-size: 13px;
+    text-shadow: none;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  pre[class*="language-"]::selection,
+  code[class*="language-"]::selection,
+  pre[class*="language-"]::mozselection,
+  code[class*="language-"]::mozselection {
+    text-shadow: none;
+    background: theme("colors.violet.300");
+  }
+
+  @media print {
+    pre[class*="language-"],
+    code[class*="language-"] {
+      text-shadow: none;
+    }
+  }
+
+  pre[class*="language-"] {
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+    background: theme("colors.blueGray.900");
+  }
+
+  /*********************************************************
+  * Tokens
+  */
+  .namespace {
+    opacity: 0.7;
+  }
+
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: theme("colors.violet.400");
+  }
+
+  .token.punctuation {
+    color: theme("colors.violet.300");
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: theme("colors.lime.200");
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: theme("colors.orange.200");
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: theme("colors.violet.400");
+    background: transparent;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: theme("colors.violet.400");
+  }
+
+  .token.function {
+    color: theme("colors.emerald.200");
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: theme("colors.orange.300");
+  }
+
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
+
+  /*********************************************************
+  * Line highlighting
+  */
+  /**
+  * Add back the container background-color, border-radius, padding, margin
+  * and overflow that we removed from <pre>.
+  */
+  .gatsby-highlight {
+    @apply rounded;
+    margin: 1.7em 0;
+    overflow: auto;
+  }
+
+  /**
+  * Remove some default PrismJS theme styles.
+  * 1. Make the element just wide enough to fit its content.
+  * 2. Always fill the visible space in .gatsby-highlight.
+  */
+  .gatsby-highlight pre[class*="language-"] {
+    margin: 0;
+    overflow: initial;
+    float: left; /* 1 */
+    min-width: 100%; /* 2 */
+  }
+
+  .gatsby-highlight-code-line {
+    background: theme("colors.blueGray.700");
+    display: block;
+    margin-right: -1.1em;
+    margin-left: -1.1em;
+    padding-right: 1.1em;
+    padding-left: 0.75em;
+    border-left: 0.35em solid theme("colors.blueGray.600");
+  }
+}

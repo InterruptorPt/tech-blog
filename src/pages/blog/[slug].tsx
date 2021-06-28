@@ -3,6 +3,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 import fs from 'fs/promises'
 import matter from 'gray-matter'
 import path from 'path'
+import prism from 'remark-prism'
 
 import { enhanceStaticProps } from 'utils/next/enhanceStaticProps'
 import { BLOG_FILES_FOLDER } from 'utils/server'
@@ -40,7 +41,10 @@ export const getStaticProps = enhanceStaticProps<
   const source = await fs.readFile(path.join(BLOG_FILES_FOLDER, filename))
 
   const { content, data } = matter(source)
-  const mdxSource = await serialize(content, { scope: data })
+  const mdxSource = await serialize(content, {
+    scope: data,
+    mdxOptions: { remarkPlugins: [prism] },
+  })
 
   return { props: { source: mdxSource, frontMatter: data } }
 })

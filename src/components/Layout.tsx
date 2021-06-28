@@ -11,7 +11,17 @@ import { LocaleChanger } from './LocaleChanger'
 import { ThemeToggle } from './ThemeToggle'
 
 const components = {
-  img: Image,
+  img: (props: { src: string; alt: string }) => {
+    return (
+      <Image
+        {...props}
+        alt={props.alt || ''}
+        height={340}
+        width={600}
+        objectFit="contain"
+      />
+    )
+  },
   a: Link,
 }
 

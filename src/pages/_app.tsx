@@ -6,6 +6,7 @@ import { Layout } from 'components/Layout'
 import 'tailwindcss/tailwind.css'
 import 'styles/main.scss'
 import 'styles/fonts.css'
+import 'styles/prism-theme.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
