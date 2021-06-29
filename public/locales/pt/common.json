@@ -15,5 +15,17 @@
       "logoAlt": "Interruptor",
       "tech": "tecnologia"
     }
+  },
+  "social": {
+    "facebook": "Facebook",
+    "github": "GitHub",
+    "instagram": "Instagram",
+    "twitter": "Twitter",
+    "followOn": {
+      "facebook": "Segue o Interruptor no Facebook",
+      "github": "Ver os repositórios do Interruptor no GitHub",
+      "instagram": "Segue o Interruptor no Instagram",
+      "twitter": "Segue o Interruptor no Twitter"
+    }
   }
 }
