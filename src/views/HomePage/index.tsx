@@ -42,7 +42,7 @@ export const HomePage: React.FC<HomePageProps> = ({ posts }) => {
                     </Link>
                   </h2>
                   {date && (
-                    <small className="block text-xs font-semibold text-violet-700 dark:text-violet-200">
+                    <small className="block text-xs font-display font-semibold text-violet-700 dark:text-lime">
                       {formatDate(date)}
                     </small>
                   )}

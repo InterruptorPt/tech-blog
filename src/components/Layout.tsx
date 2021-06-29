@@ -43,19 +43,17 @@ export const Layout: React.FC = (props) => {
     >
       <span>
         <img
-          className="inline dark:hidden h-10"
+          className="inline dark:hidden h-9"
           src="/logo-purple.svg"
           alt={t('site.title.logoAlt')}
         />
         <img
-          className="hidden dark:inline h-10"
+          className="hidden dark:inline h-9"
           src="/logo-yellow.svg"
           alt={t('site.title.logoAlt')}
         />
       </span>
-      <span className="transform translate-x-2 -translate-y-2">
-        {t('site.title.tech')}
-      </span>
+      <span className="-mt-2">{t('site.title.tech')}</span>
     </Link>
   )
 
@@ -64,7 +62,7 @@ export const Layout: React.FC = (props) => {
       <DefaultSEO />
       <header
         className={clsx(
-          'flex justify-between',
+          'flex justify-between items-start',
           'w-full max-w-screen-md',
           'mx-auto my-4 md:my-8 px-4 space-x-4',
         )}

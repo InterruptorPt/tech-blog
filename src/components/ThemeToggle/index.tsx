@@ -26,7 +26,7 @@ export const ThemeToggle: React.FC = () => {
       onClick={() => setDarkMode((x) => !x)}
       type="button"
     >
-      {isDarkMode ? <Moon /> : <Sun />}
+      {!isDarkMode ? <Moon /> : <Sun />}
     </button>
   )
 }
