@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
   return (
     <footer
       className={clsx(
-        'flex flex-col items-center p-4 md:py-8 mt-8 md:mt-12 space-y-4',
+        'flex flex-col items-center py-8 mt-8 md:mt-12 space-y-4',
         'bg-black text-white font-display',
       )}
     >

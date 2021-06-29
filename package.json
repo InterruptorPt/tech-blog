@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src --ext .js,.ts,.tsx --fix"
+    "lint": "eslint src --ext .js,.ts,.tsx --fix",
+    "typecheck": "tsc -p ./tsconfig.json"
   },
   "dependencies": {
     "@mdx-js/loader": "^1.6.22",

@@ -11,9 +11,11 @@
     }
   },
   "site": {
+    "description": "Interruptor's blog about building the site and open source.",
     "title": {
+      "full": "Interruptor Tech",
       "logoAlt": "Interruptor",
-      "tech": "tech"
+      "tech": "technology"
     }
   },
   "social": {

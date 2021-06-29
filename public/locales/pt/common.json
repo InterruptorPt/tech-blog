@@ -11,7 +11,9 @@
     }
   },
   "site": {
+    "description": "Interruptor's blog sobre a construção do site e código aberto.",
     "title": {
+      "full": "Interruptor Tecnologia",
       "logoAlt": "Interruptor",
       "tech": "tecnologia"
     }

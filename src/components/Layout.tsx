@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { MDXProvider } from '@mdx-js/react'
 import clsx from 'clsx'
 
+import { DefaultSEO } from './SEO/DefaultSEO'
 import { Footer } from './Footer'
 import { Link } from './Link'
 import { LocaleChanger } from './LocaleChanger'
@@ -34,9 +35,8 @@ export const Layout: React.FC = (props) => {
     <Link
       href="/"
       className={clsx(
-        'flex font-normal items-center',
-        'space-x-2',
-        'font-display text-2xl text-violet-700 dark:text-violet-200',
+        'flex flex-col items-start',
+        'font-display font-normal text-xl text-violet-700 dark:text-violet-200',
         '!bg-none origin-top-left',
         { 'scale-75': !isHomePage },
       )}
@@ -53,17 +53,20 @@ export const Layout: React.FC = (props) => {
           alt={t('site.title.logoAlt')}
         />
       </span>
-      <span>{t('site.title.tech')}</span>
+      <span className="transform translate-x-2 -translate-y-2">
+        {t('site.title.tech')}
+      </span>
     </Link>
   )
 
   return (
     <>
+      <DefaultSEO />
       <header
         className={clsx(
           'flex justify-between',
-          'w-full max-w-screen-sm',
-          'mx-auto my-8 px-4 space-x-2',
+          'w-full max-w-screen-md',
+          'mx-auto my-4 md:my-8 px-4 space-x-4',
         )}
       >
         {isHomePage ? <h1>{homepageLink}</h1> : homepageLink}
@@ -74,7 +77,7 @@ export const Layout: React.FC = (props) => {
       </header>
       <MDXProvider components={components}>
         <main
-          className="flex-grow w-full max-w-screen-sm mx-auto px-4"
+          className="flex-grow w-full max-w-screen-md mx-auto px-4"
           {...props}
         />
       </MDXProvider>

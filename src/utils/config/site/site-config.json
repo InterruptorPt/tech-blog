@@ -1,5 +1,6 @@
 {
   "title": "Interruptor",
+  "blogSiteURL": "https://tech.interruptor.pt",
   "mainSiteURL": "https://www.interruptor.pt",
   "email": {
     "general": "geral@interruptor.pt"
@@ -22,9 +23,6 @@
     "openCollective": {
       "url": "https://opencollective.com/interruptorpt"
     }
-  },
-  "prismic": {
-    "repoName": "interruptor"
   },
   "socialMedia": {
     "facebook": {
