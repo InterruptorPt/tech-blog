@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { SEO } from 'components/SEO'
@@ -10,6 +11,7 @@ export type BlogPageProps = {
     title: string
     description: string
     author: string
+    translator: string
     date: string
     image: string
     imageAlt: string
@@ -17,13 +19,22 @@ export type BlogPageProps = {
 }
 
 export const BlogPage: React.FC<BlogPageProps> = ({ source, frontMatter }) => {
+  const { t } = useTranslation()
   const formatDate = useDateFormatter({
     day: 'numeric',
     month: 'long',
     year: 'numeric',
   })
 
-  const { date, title, description, image, imageAlt = '' } = frontMatter
+  const {
+    date,
+    title,
+    description,
+    image,
+    imageAlt = '',
+    translator,
+    author,
+  } = frontMatter
 
   return (
     <>
@@ -35,9 +46,16 @@ export const BlogPage: React.FC<BlogPageProps> = ({ source, frontMatter }) => {
           type="article"
         />
       )}
+
       {image && (
         <div className="relative flex-shrink-0 w-full pb-9/16 mb-4 md:mb-8">
-          <Image src={image} alt={imageAlt} layout="fill" objectFit="cover" />
+          <Image
+            src={image}
+            alt={imageAlt}
+            layout="fill"
+            objectFit="cover"
+            sizes="600px"
+          />
         </div>
       )}
 
@@ -54,8 +72,22 @@ export const BlogPage: React.FC<BlogPageProps> = ({ source, frontMatter }) => {
             {title}
           </h1>
           {date && (
-            <p className="text-sm font-display font-bold text-primary-800 dark:text-lime">
+            <time
+              dateTime={date}
+              className="block my-4 text-sm font-display font-bold text-violet-600 dark:text-lime"
+            >
               {formatDate(date)}
+            </time>
+          )}
+          {author && (
+            <p className="text-sm font-display">
+              <span className="mr-1">
+                {t('post.header.author', { author })}
+              </span>
+
+              {translator && (
+                <span>({t('post.header.translator', { translator })})</span>
+              )}
             </p>
           )}
         </header>

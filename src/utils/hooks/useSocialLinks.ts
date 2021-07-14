@@ -1,4 +1,4 @@
-import { Facebook, GitHub, Icon, Instagram, Twitter } from 'react-feather'
+import { Facebook, GitHub, Icon, Instagram, Mail, Twitter } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 
 import { siteConfig } from 'utils/config/site'
@@ -8,12 +8,17 @@ type SocialLink = {
   text: string
   Icon: Icon
 }
-const { links, socialMedia } = siteConfig
+const { links, socialMedia, email } = siteConfig
 
 export const useSocialLinks = (): SocialLink[] => {
   const { t } = useTranslation()
 
   return [
+    {
+      href: `mailto:${email.general}`,
+      text: t('footer.contactUs.email'),
+      Icon: Mail,
+    },
     {
       href: links.github.url,
       text: t('social.followOn.github'),

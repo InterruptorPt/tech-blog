@@ -4,10 +4,19 @@
     "500": "Something went wrong"
   },
   "footer": {
+    "contactUs": {
+      "email": "Send us an email"
+    },
     "licence": {
       "description": "Content licenced under CC BY-SA",
       "link": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
       "title": "CC BY-SA"
+    }
+  },
+  "post": {
+    "header": {
+      "author": "By {{author}}",
+      "translator": "Translated by {{translator}}"
     }
   },
   "site": {

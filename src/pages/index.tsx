@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import matter from 'gray-matter'
+import { orderBy } from 'lodash'
 import path from 'path'
 
 import { enhanceStaticProps } from 'utils/next/enhanceStaticProps'
@@ -37,7 +38,7 @@ export const getStaticProps = enhanceStaticProps<HomePageProps>(
 
     return {
       props: {
-        posts: postsByLanguage,
+        posts: orderBy(postsByLanguage, (post) => post.data.date, 'desc'),
       },
     }
   },

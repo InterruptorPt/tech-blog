@@ -4,10 +4,19 @@
     "500": "Qualquer coisa correu mal"
   },
   "footer": {
+    "contactUs": {
+      "email": "Envia-nos um e-mail"
+    },
     "licence": {
       "description": "Conteúdo licenciado sob CC BY-SA",
       "link": "https://creativecommons.org/licenses/by-sa/4.0/deed.pt",
       "title": "CC BY-SA"
+    }
+  },
+  "post": {
+    "header": {
+      "author": "Por {{author}}",
+      "translator": "Traduzido por {{translator}}"
     }
   },
   "site": {
