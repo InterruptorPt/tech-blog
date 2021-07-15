@@ -10,7 +10,7 @@ export const useDateFormatter = (
 ): ((date: string | Date | number) => string) => {
   const { i18n } = useTranslation()
   const { format } = new Intl.DateTimeFormat(
-    formatterLocales[i18n.language] || 'en',
+    formatterLocales[i18n.language],
     options,
   )
 
