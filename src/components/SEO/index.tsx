@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { siteConfig } from 'utils/config/site'
+import { siteConfig } from 'config/site'
 
 type Props = {
   pageTitle: string
