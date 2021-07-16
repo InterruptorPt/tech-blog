@@ -1,6 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Licenses
+
+This repo is shared under different licenses.
+
+- the code for the website and any code snippets shared on the blog articles are made available under an [MIT License](LICENSE.TXT)
+- the content written for the blog is under a [CC BY-SA license](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ## Getting Started
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 First, run the development server:
 
