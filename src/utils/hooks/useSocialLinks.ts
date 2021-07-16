@@ -1,7 +1,7 @@
 import { Facebook, GitHub, Icon, Instagram, Mail, Twitter } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 
-import { siteConfig } from 'utils/config/site'
+import { siteConfig } from 'config/site'
 
 type SocialLink = {
   href: string

@@ -15,6 +15,7 @@ export type BlogPageProps = {
     date: string
     image: string
     imageAlt: string
+    imageCredit: string
   }>
 }
 
@@ -32,6 +33,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ source, frontMatter }) => {
     description,
     image,
     imageAlt = '',
+    imageCredit,
     translator,
     author,
   } = frontMatter
@@ -48,15 +50,23 @@ export const BlogPage: React.FC<BlogPageProps> = ({ source, frontMatter }) => {
       )}
 
       {image && (
-        <div className="relative flex-shrink-0 w-full pb-9/16 mb-4 md:mb-8">
-          <Image
-            src={image}
-            alt={imageAlt}
-            layout="fill"
-            objectFit="cover"
-            sizes="600px"
-          />
-        </div>
+        <figure className="mb-4 md:mb-8">
+          <div className="relative pb-9/16">
+            <Image
+              src={image}
+              alt={imageAlt}
+              layout="fill"
+              objectFit="cover"
+              sizes="600px"
+              quality={90}
+            />
+          </div>
+          {!!imageCredit && (
+            <figcaption className="font-display font-medium text-xs text-right py-1 text-violet-600 dark:text-violet-200">
+              {imageCredit}
+            </figcaption>
+          )}
+        </figure>
       )}
 
       <article

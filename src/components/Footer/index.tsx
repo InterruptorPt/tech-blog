@@ -3,7 +3,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 
 import { Link } from 'components/Link'
-import { siteConfig } from 'utils/config/site'
+import { siteConfig } from 'config/site'
 import { useSocialLinks } from 'utils/hooks/useSocialLinks'
 
 export const Footer: React.FC = () => {
