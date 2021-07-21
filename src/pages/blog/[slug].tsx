@@ -13,15 +13,22 @@ type BlogPagePathParams = {
   slug: string
 }
 
-export const getStaticPaths: GetStaticPaths<BlogPagePathParams> = async () => {
+export const getStaticPaths: GetStaticPaths<BlogPagePathParams> = async ({
+  defaultLocale = 'pt',
+  locales = [defaultLocale],
+}) => {
   const files = await fs.readdir(BLOG_FILES_FOLDER, { withFileTypes: true })
+  const paths = files.flatMap(({ name }) => {
+    const [slug] = name.split('.')
+
+    return locales.map((locale) => ({
+      params: { slug },
+      locale,
+    }))
+  })
 
   return {
-    paths: files.map((f) => {
-      const [slug, locale] = f.name.split('.')
-
-      return { params: { slug }, locale }
-    }),
+    paths,
     fallback: false,
   }
 }
@@ -36,7 +43,7 @@ export const getStaticProps = enhanceStaticProps<
     return { notFound: true }
   }
 
-  const filename = `${slug}.${locale}.mdx`
+  const filename = `${slug}/index.${locale}.mdx`
 
   const source = await fs.readFile(path.join(BLOG_FILES_FOLDER, filename))
 
