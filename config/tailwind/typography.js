@@ -1,4 +1,11 @@
 module.exports = (theme) => ({
+  DEFAULT: {
+    css: {
+      h1: {
+        fontWeight: 700,
+      },
+    },
+  },
   dark: {
     css: {
       color: theme('colors.violet.50'),
@@ -15,7 +22,7 @@ module.exports = (theme) => ({
         color: theme('colors.violet.400'),
       },
       'ul > li::before': {
-        backgroundColor: theme('colors.violet.600'),
+        backgroundColor: theme('colors.violet.400'),
       },
       hr: {
         borderColor: theme('colors.violet.600'),
