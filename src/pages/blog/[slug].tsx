@@ -6,7 +6,7 @@ import path from 'path'
 import prism from 'remark-prism'
 
 import { enhanceStaticProps } from 'utils/next/enhanceStaticProps'
-import { BLOG_FILES_FOLDER } from 'utils/server'
+import { BLOG_FILES_FOLDER, doesFileExist } from 'utils/server'
 import { BlogPage, BlogPageProps } from 'views/BlogPage'
 
 type BlogPagePathParams = {
@@ -39,13 +39,14 @@ export const getStaticProps = enhanceStaticProps<
 >(async ({ params, locale }) => {
   const slug = params?.slug
 
-  if (!slug || !locale) {
+  const filename = path.join(BLOG_FILES_FOLDER, `${slug}/index.${locale}.mdx`)
+  const fileExists = await doesFileExist(filename)
+
+  if (!fileExists) {
     return { notFound: true }
   }
 
-  const filename = `${slug}/index.${locale}.mdx`
-
-  const source = await fs.readFile(path.join(BLOG_FILES_FOLDER, filename))
+  const source = await fs.readFile(filename)
 
   const { content, data } = matter(source)
   const mdxSource = await serialize(content, {
