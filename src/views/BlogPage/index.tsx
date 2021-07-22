@@ -62,9 +62,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({ source, frontMatter }) => {
             />
           </div>
           {!!imageCredit && (
-            <figcaption className="font-display font-medium text-xs text-right py-1 text-violet-600 dark:text-violet-200">
-              {imageCredit}
-            </figcaption>
+            <figcaption
+              className="font-display font-medium text-xs text-right py-1 text-violet-600 dark:text-violet-200"
+              dangerouslySetInnerHTML={{ __html: imageCredit }}
+            />
           )}
         </figure>
       )}
