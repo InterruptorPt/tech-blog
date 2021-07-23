@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 
 import { Layout } from 'components/Layout'
@@ -10,9 +11,16 @@ import 'styles/prism-theme.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Head>
+        {process.env.NODE_ENV === 'production' && (
+          <script src="/js/script.js" data-domain="tech.interruptor.pt" defer />
+        )}
+      </Head>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   )
 }
 

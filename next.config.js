@@ -16,4 +16,16 @@ module.exports = withMDX({
   serverRuntimeConfig: {
     rootDir: __dirname,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/js/script.js',
+        destination: 'https://plausible.io/js/plausible.js',
+      },
+      {
+        source: '/api/event',
+        destination: 'https://plausible.io/api/event',
+      },
+    ]
+  },
 })
