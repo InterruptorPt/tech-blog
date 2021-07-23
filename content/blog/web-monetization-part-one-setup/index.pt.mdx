@@ -1,0 +1,54 @@
+---
+title: 'Web Monetization: Part 1 - Configuração'
+date: '2021-07-22'
+author: Ciaran Edwards
+translator: Rute Correia
+description: Uma rápida introdução ao protocolo Web Monetization, e como começar a usá-lo em qualquer site
+image: /images/tip-jar.jpg
+imageCredit: Photo by <a href="https://unsplash.com/@sam_truong?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sam Dan Truong</a> on <a href="https://unsplash.com/s/photos/money?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+imageAlt: A tip jar
+---
+
+## O que é o protocolo _Web Monetization_?
+
+Habitualmente, quando um determinado sítio _web_ não vende coisas, é através de publicidade faz dinheiro, mas a publicidade pode ser bastante invasiva. O protocolo _Web Monetization_ propõe-se a resolver essa questão. É um meio seguro, e orientado para a privacidade, de as pessoas conseguirem apoiar criadores de conteúdos, usando o seu navegador _web_ para enviar continuamente pagamentos **extremamente reduzidos**. Como é um fluxo contínuo de micropagamentos, a quantidade de dinheiro que o sítio recebe depende do tempo que a pessoa lá passe.
+
+*_Não traduzimos Web Monetization por ser o nome do protocolo. Em português significa monetização web._ 
+
+## Como é que leitores e apoiantes podem começar a usá-lo?
+
+Atualmente, a única maneira de usar esta tecnologia é recorrendo a uma [subscrição Coil](https://coil.com/) e, depois, escolher uma das [extensões para navegadores _web_ disponíveis](https://help.coil.com/docs/membership/coil-extension/index.html)* ou usar o navegador móvel Puma (que será, certamente, familiar para qualquer pessoa que use o Firefox). A grande vantagem é que deixa de ser necessário fazer subscrições individuais de cada um dos sítios que se queira apoiar - se estiverem a usar _Web Monetization_, esse apoio é automático.
+
+*_Existem extensões para os navegadores mais populares, nomeadamente Chrome, Firefox, Brave e Edge, entre outros._
+
+## Como posso implementá-lo no meu site?
+
+### Conseguir uma carteira de pagamentos
+
+A primeira coisa que precisamos é um apontador para pagamentos (_payment pointer_), que é vagamente parecido com um URL. É esse apontador que diz ao navegador de cada pessoa para onde deve enviar os pagamentos. Para garantir um, temos de criar uma carteira de pagamentos no [Uphold](https://www.uphold.com) ou no [GateHub](https://gatehub.net), e ativar a opção de receber pagamentos através da rede [Interledger](https://interledger.org/).
+
+💡 _[Instruções detalhadas sobre como criar a carteira](https://webmonetization.org/docs/ilp-wallets) (em inglês)_
+
+### Receber os pagamentos
+
+Uma vez garantido o apontador de pagamentos, ativar o protocolo _Web Monetization_ não podia ser mais fácil. Basta incluir uma tag `<meta>` de monetização em qualquer página em  que queiramos que seja ativado:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="monetization" content="$o_teu_apontador_de_pagamentos" />
+  </head>
+  <body>
+    <!-- O teu conteúdo absolutamente extraordinário -->
+  </body>
+</html>
+```
+
+Por exemplo, aqui está o nosso:
+
+```html
+<meta name="monetization" content="$ilp.uphold.com/nzj2HrUbBDKa" />
+```
+
+E já está! Quando uma pessoa com subscrição Coil e _Web Monetization_ ativado chegar ao site, começam os micropagamentos. O próximo passo é verificar se está, de facto, ligado e preparar o sítio _web_ para reagir a isso. Mas isso fica para a próxima publicação.
