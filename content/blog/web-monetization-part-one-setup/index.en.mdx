@@ -1,0 +1,49 @@
+---
+title: 'Web Monetization: Part 1 - Setup'
+date: '2021-07-23'
+author: Ciaran Edwards
+description: A quick intro to Web Monetization, and how to get started with it on your own site.
+image: /images/tip-jar.jpg
+imageCredit: Photo by <a href="https://unsplash.com/@sam_truong?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sam Dan Truong</a> on <a href="https://unsplash.com/s/photos/money?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+imageAlt: A tip jar
+---
+
+## What is Web Monetization?
+
+Typically, if websites doesn't sell things, the way they make money is by using ads, and ads can get really intrusive. To solve that, Web Monetization is a secure, privacy-focused way for people to support content creators by letting their browser continuously send _extremely small_ payments while they're on a site. Since it's a continuous stream of micro payments, the amount of money the site gets is based on the amount of time you spend on the site.
+
+## How do users start using it?
+
+Currently, the only way for users to set this up is to get a [Coil subscription](https://coil.com/), and use either their [browser extensions](https://help.coil.com/docs/membership/coil-extension/index.html) or the Puma mobile browser (which will be fairly fimiliar to anyone who already uses Firefox). The bonus here is that you don't need to set up individual subscriptions with all your favourite sites to be able to support them - if they're using Web Monetization, you'll support them automatically.
+
+## How can I set it up on my site?
+
+### Getting a payment wallet
+
+The first thing you'll need is a _payment pointer_, which looks a bit like a URL and tells your users' browsers where to send payments to. To get one, you can create a payment wallet with either [Uphold](https://www.uphold.com) or [GateHub](https://gatehub.net), and enable the option to receive payments through the [Interledger](https://interledger.org/) network.
+
+💡 _[Detailed instructions on setting up your wallet](https://webmonetization.org/docs/ilp-wallets)_
+
+### Getting paid
+
+Once you've got your _payment pointer_, enabling Web Monetization on your site couldn't be easier. You simply need to include a monetization `<meta>` tag on every page where you want it to be enabled:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="monetization" content="$your_payment_pointer" />
+  </head>
+  <body>
+    <!-- All your great content -->
+  </body>
+</html>
+```
+
+For example, this is ours:
+
+```html
+<meta name="monetization" content="$ilp.uphold.com/nzj2HrUbBDKa" />
+```
+
+And that's it! When a user who has a Coil subscription and Web Monetization activated arrives on your site, you'll start receiving micro payments. The next step is checking it's activated and getting your site to react to it. That'll be in the next post.
