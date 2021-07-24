@@ -47,7 +47,7 @@ module.exports = {
       {
         blankLine: 'any',
         prev: ['const', 'let', 'var'],
-        next: ['const', 'let', 'var', 'expect'],
+        next: ['const', 'let', 'var'],
       },
     ],
     'prefer-const': ['error', { destructuring: 'all' }],
