@@ -84,6 +84,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ source, frontMatter }) => {
           </h1>
           {date && (
             <time
+              data-testid="firstPublishedDate"
               dateTime={date}
               className="block my-4 text-sm font-display font-bold text-violet-600 dark:text-lime"
             >

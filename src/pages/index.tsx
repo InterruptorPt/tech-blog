@@ -3,8 +3,8 @@ import glob from 'glob'
 import matter from 'gray-matter'
 import { orderBy } from 'lodash'
 
+import { BLOG_FILES_FOLDER } from 'utils/blog'
 import { enhanceStaticProps } from 'utils/next/enhanceStaticProps'
-import { BLOG_FILES_FOLDER } from 'utils/server'
 import { HomePage, HomePageProps } from 'views/HomePage'
 
 export const getStaticProps = enhanceStaticProps<HomePageProps>(
