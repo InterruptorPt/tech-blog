@@ -38,4 +38,5 @@ export const siteConfig = {
       username: '@InterruptorPT',
     },
   },
+  webMonetizationPointer: '$ilp.uphold.com/nzj2HrUbBDKa',
 } as const

@@ -7,6 +7,8 @@ import Document, {
   NextScript,
 } from 'next/document'
 
+import { siteConfig } from 'config/site'
+
 class MyDocument extends Document {
   static async getInitialProps(
     ctx: DocumentContext,
@@ -20,7 +22,6 @@ class MyDocument extends Document {
     return (
       <Html className="dark">
         <Head>
-          <link rel="preconnect" href="https://images.prismic.io" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -55,6 +56,12 @@ class MyDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
           <meta name="theme-color" content="#7972AB" />
           <meta name="color-scheme" content="dark light" />
+          {!!siteConfig.webMonetizationPointer && (
+            <meta
+              name="monetization"
+              content={siteConfig.webMonetizationPointer}
+            />
+          )}
         </Head>
         <body className="bg-white text-black dark:bg-violet-900 dark:text-white">
           <div className="max-w-full">
