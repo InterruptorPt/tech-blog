@@ -5,6 +5,8 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { SEO } from 'components/SEO'
 import { useDateFormatter } from 'utils/dates/useDateFormatter'
 
+import { LinksToOtherPosts, PostLink } from './LinksToOtherPosts'
+
 export type BlogPageProps = {
   source: MDXRemoteSerializeResult<Record<string, unknown>>
   frontMatter: Partial<{
@@ -17,9 +19,17 @@ export type BlogPageProps = {
     imageAlt: string
     imageCredit: string
   }>
+  links: {
+    next: PostLink | null
+    previous: PostLink | null
+  }
 }
 
-export const BlogPage: React.FC<BlogPageProps> = ({ source, frontMatter }) => {
+export const BlogPage: React.FC<BlogPageProps> = ({
+  source,
+  frontMatter,
+  links,
+}) => {
   const { t } = useTranslation()
   const formatDate = useDateFormatter({
     day: 'numeric',
@@ -105,6 +115,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({ source, frontMatter }) => {
         </header>
         <MDXRemote {...source} />
       </article>
+
+      <nav className="border-t-2 p-4 mt-4 md:mt-8">
+        <LinksToOtherPosts previous={links.previous} next={links.next} />
+      </nav>
     </>
   )
 }
