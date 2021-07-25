@@ -1,30 +1,14 @@
 import React from 'react'
 import { useRouter } from 'next/dist/client/router'
-import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
-import { MDXProvider } from '@mdx-js/react'
 import clsx from 'clsx'
 
 import { DefaultSEO } from './SEO/DefaultSEO'
+import { CustomMDXProvider } from './CustomMDXProvider'
 import { Footer } from './Footer'
 import { Link } from './Link'
 import { LocaleChanger } from './LocaleChanger'
 import { ThemeToggle } from './ThemeToggle'
-
-const components = {
-  img: (props: { src: string; alt: string }) => {
-    return (
-      <Image
-        {...props}
-        alt={props.alt || ''}
-        height={340}
-        width={600}
-        objectFit="contain"
-      />
-    )
-  },
-  a: Link,
-}
 
 export const Layout: React.FC = (props) => {
   const { t } = useTranslation()
@@ -73,12 +57,12 @@ export const Layout: React.FC = (props) => {
           <ThemeToggle />
         </div>
       </header>
-      <MDXProvider components={components}>
+      <CustomMDXProvider>
         <main
           className="flex-grow w-full max-w-screen-md mx-auto px-4"
           {...props}
         />
-      </MDXProvider>
+      </CustomMDXProvider>
       <Footer />
     </>
   )
