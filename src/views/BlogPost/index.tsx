@@ -7,7 +7,7 @@ import { useDateFormatter } from 'utils/dates/useDateFormatter'
 
 import { LinksToOtherPosts, PostLink } from './LinksToOtherPosts'
 
-export type BlogPageProps = {
+export type BlogPostProps = {
   source: MDXRemoteSerializeResult<Record<string, unknown>>
   frontMatter: Partial<{
     title: string
@@ -25,7 +25,7 @@ export type BlogPageProps = {
   }
 }
 
-export const BlogPage: React.FC<BlogPageProps> = ({
+export const BlogPost: React.FC<BlogPostProps> = ({
   source,
   frontMatter,
   links,

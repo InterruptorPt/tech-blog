@@ -9,13 +9,13 @@ import {
   readPostMarkdown,
 } from 'utils/blog'
 import { enhanceStaticProps } from 'utils/next/enhanceStaticProps'
-import { BlogPage, BlogPageProps } from 'views/BlogPage'
+import { BlogPost, BlogPostProps } from 'views/BlogPost'
 
-type BlogPagePathParams = {
+type BlogPostPathParams = {
   slug: string
 }
 
-export const getStaticPaths: GetStaticPaths<BlogPagePathParams> = async ({
+export const getStaticPaths: GetStaticPaths<BlogPostPathParams> = async ({
   defaultLocale = 'pt',
   locales = [defaultLocale],
 }) => {
@@ -34,8 +34,8 @@ export const getStaticPaths: GetStaticPaths<BlogPagePathParams> = async ({
 }
 
 export const getStaticProps = enhanceStaticProps<
-  BlogPageProps,
-  BlogPagePathParams
+  BlogPostProps,
+  BlogPostPathParams
 >(async ({ params, locale = 'pt' }) => {
   const slug = params?.slug
 
@@ -77,4 +77,4 @@ export const getStaticProps = enhanceStaticProps<
   }
 })
 
-export default BlogPage
+export default BlogPost

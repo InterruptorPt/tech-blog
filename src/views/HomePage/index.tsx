@@ -2,11 +2,11 @@ import React from 'react'
 
 import { Link } from 'components/Link'
 import { useDateFormatter } from 'utils/dates/useDateFormatter'
-import { BlogPageProps } from 'views/BlogPage'
+import { BlogPostProps } from 'views/BlogPost'
 
 export type HomePageProps = {
   posts: {
-    data: BlogPageProps['frontMatter']
+    data: BlogPostProps['frontMatter']
     slug: string
   }[]
 }
