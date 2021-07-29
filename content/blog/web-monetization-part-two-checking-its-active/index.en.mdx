@@ -1,0 +1,216 @@
+---
+title: "Web Monetization: Part 2 - Checking it's active"
+date: '2021-07-25'
+author: Ciaran Edwards
+description: How to get your site to respond when you're receiving payments through Web Monetization. A step-by-step tutorial with React and TypeScript.
+image: /images/on-off-buttons.jpg
+imageCredit: Photo by <a href="https://unsplash.com/@justusmenke?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Justus Menke</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+imageAlt: '"On" and "off" buttons'
+---
+
+Once you've got your payment pointer set up, the next thing to do is to get your site to check whether you're receiving payments through Web Monetization and to respond to it using the [JavaScript API](https://webmonetization.org/docs/api).
+
+While you could just check `document.monetization === 'started'` to see whether you're receiving payments, if you're using a framework like React, you'll want your page to update whenever the payments start or stop.
+
+💡 _Our site is built with React, so the code samples here use React. The principles are fairly simple though, so it might not be too hard to tweak the code to fit whichever framework you're using._
+
+## Step 0: Telling TypeScript about Web Monetization
+
+If you're using TypeScript, you'll need to tell it that the `document` now has a `monetization` property. Or, more specifically, it _might_ have a `monetization` property. Luckily for us, Coil have created a package with all the Web Monetization types we'll need, so let's go ahead and install it:
+
+```sh
+npm install --save-dev @webmonetization/types
+```
+
+We can then add the `monetization` property to the global `Document` interface like so:
+
+```ts
+import { MonetizationObject } from '@webmonetization/types'
+
+declare global {
+  interface Document {
+    monetization?: MonetizationObject
+  }
+}
+```
+
+TypeScript now knows about Web Monetization! 🎉
+
+## Step 1: Adding event listeners
+
+To find out whether any monetization events are happening, you can use `document.monetization.addEventListener`.
+
+```ts
+document.monetization.addEventListener(eventName, (event) => {
+  doSomeStuff(event)
+})
+```
+
+However, there are two things to keep in mind here:
+
+1. We'll always need to check whether `document.monetization` exists before trying to add event listeners to it.
+1. We should make sure to remove the event listener when we're not using it anymore.
+
+So let's create function to handle both of those things:
+
+```ts
+import {
+  MonetizationEventMap,
+  MonetizationEventType,
+} from '@webmonetization/types'
+import { TEventListener } from '@webmonetization/types/build/genericEventListeners'
+
+/**
+ * This adds the monetization event listener and then returns a function
+ * that we can call to remove the event listener later
+ */
+const addEventListener = <TEvent extends MonetizationEventType>(
+  event: TEvent,
+  eventListener: TEventListener<MonetizationEventMap[TEvent]>,
+): (() => void) => {
+  document.monetization?.addEventListener(event, eventListener, {
+    passive: true,
+  })
+
+  return () => document.monetization?.removeEventListener(event, eventListener)
+}
+```
+
+This will come in handy when we're adding event listeners in `useEffect`s – we can add a listener, and then remove it in the clean-up function like so:
+
+```tsx
+useEffect(() => {
+  const removeListener = addEventListener('monetizationprogress', (event) => {
+    console.log('Check out all this cash money 💸', event.detail)
+  })
+
+  return () => {
+    removeEventListener()
+  }
+}, [])
+```
+
+## Step 2: Store the current Web Monetization state in some kind of global state
+
+Now that we know how to check when we're receiving payments, we'll want our site's components to react whenever payments start or stop. For this example, we'll use React's Context API.
+
+First, we create the context:
+
+```ts
+import React from 'react'
+import { MonetizationState } from '@webmonetization/types'
+
+type WebMonetizationContextValue = {
+  state: MonetizationState // "pending" | "started" | "stopped"
+}
+
+const WebMonetizationContext = React.createContext<
+  WebMonetizationContextValue | undefined
+>(undefined)
+```
+
+Initialising the context with `undefined` is a little "trick" I use to make sure that I don't accidentally try to access the `WebMonetizationContext` outside of the `Provider`. If you set a default value when using React Context, you might forget to wrap your app with the `Provider` component and never realise. I've been caught out by things like this a few times, so I allow the default value to be `undefined`, and then create a custom hook that throws an error if the context value is missing.
+
+```ts
+export const useWebMonetization = (): WebMonetizationContextValue => {
+  const webMonetizationContext = useContext(WebMonetizationContext)
+
+  if (!webMonetizationContext) {
+    throw new Error(
+      `[WebMonetizationContext] You're using the context outside of the WebMonetizationProvider 😬`,
+    )
+  }
+
+  return webMonetizationContext
+}
+```
+
+The next step is making our custom `WebMonetizationProvider` component. This is where we'll set up all of our event listeners to track the current monetization state, and then set the value of our `WebMonetizationContext`.
+
+```tsx
+export const WebMonetizationProvider: React.FC = ({ children }) => {
+  const [state, setState] = useState<MonetizationState>('pending')
+
+  useEffect(() => {
+    const onStart = () => setState('started')
+    const onStop = () => setState('stopped')
+
+    const events = [
+      addEventListener('monetizationstart', onStart),
+      addEventListener('monetizationprogress', onStart),
+      addEventListener('monetizationstop', onStop),
+    ]
+
+    return () => {
+      events.forEach((removeListener) => removeListener())
+    }
+  }, [setState])
+
+  return (
+    <WebMonetizationContext.Provider value={{ state }}>
+      {children}
+    </WebMonetizationContext.Provider>
+  )
+}
+```
+
+All that's left to do is wrap the app with the `WebMonetizationProvider`, and you're ready to start using the `context` in your components.
+
+## Step 3: Reacting to monetization events
+
+Now that our app is set up to track monetization events, there's probably only one thing we're really interested in: _"Is it on or off?"_
+
+Let's create one more hook to check that:
+
+```ts
+export const useIsWebMonetizationActive = (): boolean => {
+  const { state } = useWebMonetization()
+
+  return state === 'started'
+}
+```
+
+You can then use this hook in any component to check whether to show extra content, disable ads or anything else you want to offer visitors who are using Web Monetization.
+
+At Interruptor, we're just getting started with implementing this stuff, so for now we just have a `WebMonetizationToaster` component that shows a notification to say "thanks" when Web Monetization is enabled.
+
+```tsx
+import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
+
+import { AnalyticsEvent, trackEvent } from 'utils/analytics'
+import { useIsWebMonetizationActive } from 'utils/monetization'
+
+export const WebMonetizationToaster: React.FC = () => {
+  const { t } = useTranslation('monetization')
+  const isMonetizationActive = useIsWebMonetizationActive()
+
+  useEffect(() => {
+    if (!isMonetizationActive) return
+
+    // Show the thank-you message
+    toast.success(t('thanks'))
+  }, [isMonetizationActive, t])
+
+  useEffect(() => {
+    if (!isMonetizationActive) return
+
+    // Send an event to Plausible so we can see how many visitors use it
+    trackEvent(AnalyticsEvent.WEB_MONETIZATION_ACTIVE)
+  }, [isMonetizationActive])
+
+  return null
+}
+```
+
+Which looks like this:
+
+<img
+  alt="Screenshot of the Interruptor website showing a thank-you message"
+  src="/images/web-monetization-thank-you-toast.png"
+  width="600"
+  height="676"
+/>
+
+That's all we've got for now, but we'll be developing more features over the coming months – and writing about them here – so keep an eye out!
