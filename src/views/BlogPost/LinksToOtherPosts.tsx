@@ -47,7 +47,7 @@ export const LinksToOtherPosts: React.FC<LinksToOtherPostsProps> = ({
               className="flex items-center space-x-1"
             >
               {iconLeft}
-              <span className="chunky-underline-violet-100 dark:chunky-underline-violet-600">
+              <span className="chunky-underline-violet-200 dark:chunky-underline-violet-600">
                 {link.title}
               </span>
               {iconRight}

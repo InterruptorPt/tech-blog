@@ -60,7 +60,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
       )}
 
       {image && (
-        <figure className="mb-4 md:mb-8">
+        <figure key={image} className="mb-4 md:mb-8">
           <div className="relative pb-9/16">
             <Image
               src={image}
@@ -87,7 +87,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
       >
         <header>
           <h1
-            className="inline chunky-underline-violet-100 dark:chunky-underline-violet-600"
+            className="inline chunky-underline-violet-200 dark:chunky-underline-violet-600"
             itemProp="headline"
           >
             {title}

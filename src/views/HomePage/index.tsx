@@ -35,7 +35,7 @@ export const HomePage: React.FC<HomePageProps> = ({ posts }) => {
                   <h2 className="text-xl md:text-2xl font-bold inline">
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="chunky-underline-violet-100 dark:chunky-underline-violet-600"
+                      className="chunky-underline-violet-200 dark:chunky-underline-violet-600"
                       itemProp="url"
                     >
                       <span itemProp="headline">{title}</span>
