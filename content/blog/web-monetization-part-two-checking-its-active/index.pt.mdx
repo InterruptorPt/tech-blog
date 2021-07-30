@@ -37,7 +37,7 @@ declare global {
 
 Agora, o TypeScript já sabe que existe Web Monetization! 🎉
 
-## Passo 1: Adicionar ouvintes aos eventos
+## Passo 1: Adicionar ouvintes de eventos
 
 Para descobrir se há eventos de monetização a acontecer, pode-se usar `document.monetization.addEventListener`.
 
@@ -49,8 +49,8 @@ document.monetization.addEventListener(eventName, (event) => {
 
 No entanto, é preciso ter em atenção duas coisas:
 
-1. Antes de tentarmos adicionar ouvintes aos eventos, temos sempre de verificar se existe `document.monetization` para podermos adicioná-los.
-1. Devemos certificar-nos que removemos ou ouvinte do evento, quando já não estamos a usá-lo.
+1. Antes de tentarmos adicionar ouvintes de eventos, temos sempre de verificar se existe `document.monetization` para podermos adicioná-los.
+1. Devemos certificar-nos que removemos o ouvinte do evento, quando já não estamos a usá-lo.
 
 Então, vamos criar uma função que resolva ambas as questões:
 
@@ -62,7 +62,7 @@ import {
 import { TEventListener } from '@webmonetization/types/build/genericEventListeners'
 
 /**
- * Isto adiciona um ouvinte ao evento de monetização e devolve uma função
+ * Isto adiciona um ouvinte do evento de monetização e devolve uma função
  * que podemos chamar para removê-lo mais tarde
  */
 const addEventListener = <TEvent extends MonetizationEventType>(
@@ -77,7 +77,7 @@ const addEventListener = <TEvent extends MonetizationEventType>(
 }
 ```
 
-Isto vai dar jeito quando adicionarmos aos eventos com `useEffect` – podemos adicionar um ouvinte e depois removê-lo com uma função de limpeza:
+Isto vai dar jeito quando adicionarmos ouvintes de eventos com `useEffect` – podemos adicionar um ouvinte e depois removê-lo com uma função de limpeza:
 
 ```tsx
 useEffect(() => {
@@ -110,7 +110,7 @@ const WebMonetizationContext = React.createContext<
 >(undefined)
 ```
 
-Inicializar o contexto com é `undefined` é um pequeno truque que uso para ter a certeza que não tento aceder ao `WebMonetizationContext` acidentalmente, fora do `Provider`. Se definires um valor padrão ao usar React Context, podes esquecer-te de encapsular a tua aplicação com o componente `Provider` sem nunca te aperceberes. Já me aconteceu ser apanhado em coisas assim algumas vezes, por isso permito que o valor esteja `undefined`, e depois crio um _hook_ que dispara um erro se o valor do contexto estiver em falta.
+Inicializar o contexto com `undefined` é um pequeno truque que uso para ter a certeza que não tento aceder ao `WebMonetizationContext` acidentalmente, fora do `Provider`. Se definires um valor padrão ao usar o _React Context_, podes esquecer-te de encapsular a tua aplicação com o componente `Provider` sem nunca te aperceberes. Já me aconteceu ser apanhado em coisas assim algumas vezes, por isso permito que o valor esteja `undefined`, e depois crio um _hook_ que dispara um erro se o valor do contexto estiver em falta.
 
 ```ts
 export const useWebMonetization = (): WebMonetizationContextValue => {
@@ -155,11 +155,11 @@ export const WebMonetizationProvider: React.FC = ({ children }) => {
 }
 ```
 
-A única coisa que falta é encapsular a aplicação com `WebMonetizationProvider`, e está tudo pronto para que possas começar a usar `context` nos teus componentes.
+A única coisa que falta é encapsular a aplicação com `WebMonetizationProvider`, e está tudo pronto para que possas começar a usar o `context` nos teus componentes.
 
 ## Passo 3: Reagir a eventos de monetização
 
-Agora que a nossa aplicação estáa configurada para acompanhar eventos de monetização, provavelmente só há mais um pormenor que nos interessa: _"Está ligado ou não?"_
+Agora que a nossa aplicação está configurada para acompanhar eventos de monetização, provavelmente só há mais um pormenor que nos interessa: _"Está ligado ou não?"_
 
 Vamos criar mais um _hook_ para verificar isso mesmo:
 
