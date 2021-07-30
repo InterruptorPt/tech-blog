@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src --ext .js,.ts,.tsx --fix",
+    "format": "prettier --write",
     "typecheck": "tsc -p ./tsconfig.json",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@mdx-js/loader": "^1.6.22",
@@ -51,8 +53,10 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-testing-library": "^4.10.1",
+    "husky": "^7.0.1",
     "jest": "^27.0.6",
     "jest-extended": "^0.11.5",
+    "lint-staged": "^11.1.1",
     "next-page-tester": "^0.27.0",
     "postcss": "^8.3.6",
     "postcss-import": "^14.0.2",
@@ -61,5 +65,9 @@
   },
   "engines": {
     "node": "14.x"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "*.{md,mdx}": "prettier --write"
   }
 }

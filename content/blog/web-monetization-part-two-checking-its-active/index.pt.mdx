@@ -1,6 +1,6 @@
 ---
-title: "Web Monetization: Parte 2 - Verificar atividade"
-date: '2021-07-25'
+title: 'Web Monetization: Parte 2 - Verificar atividade'
+date: '2021-07-29'
 author: Ciaran Edwards
 translator: Rute Correia
 description: How to get your site to respond when you're receiving payments through Web Monetization. Tutorial passo-a-passo com React e TypeScript.
@@ -11,7 +11,7 @@ imageAlt: 'Botões de "on" e "off"'
 
 Depois de configurar o apontador de pagamentos, a próxima coisa a fazer é verificar se estamos a receber pagamentos através de Web Monetization e responder a isso, usando a [API de JavaScript](https://webmonetization.org/docs/api).
 
-Apesar de bastar algo como `document.monetization === 'started'` para fazer essa verificação, se estivermos a usar uma _framework_ como React, convém que a páginaa atualize sempre que o processo de pagamento inicie ou termine.
+Apesar de bastar algo como `document.monetization === 'started'` para fazer essa verificação, se estivermos a usar uma _framework_ como React, convém que a página atualize sempre que o processo de pagamento inicie ou termine.
 
 💡 _O nosso sítio web está construído em React, pelo que as amostras de código usam React. Os princípios são bastante simples, contudo. Por isso, não deverá ser demasiado difícil de afinar o código para que encaixe em qualquer framework que esteja a ser usada._
 
@@ -77,7 +77,7 @@ const addEventListener = <TEvent extends MonetizationEventType>(
 }
 ```
 
-Isto vai dar jeito quando adicionarmos aos eventos com `useEffect` – podemos adicionaar um ouvinte e depois removê-lo com uma função de limpeza:
+Isto vai dar jeito quando adicionarmos aos eventos com `useEffect` – podemos adicionar um ouvinte e depois removê-lo com uma função de limpeza:
 
 ```tsx
 useEffect(() => {
@@ -155,7 +155,7 @@ export const WebMonetizationProvider: React.FC = ({ children }) => {
 }
 ```
 
-A única coisa que falta é encapsular a aaplicaação com `WebMonetizationProvider`, e está tudo pronto para que possas começar a usar `context` nos teus componentes.
+A única coisa que falta é encapsular a aplicação com `WebMonetizationProvider`, e está tudo pronto para que possas começar a usar `context` nos teus componentes.
 
 ## Passo 3: Reagir a eventos de monetização
 
@@ -174,7 +174,6 @@ export const useIsWebMonetizationActive = (): boolean => {
 Podes usar este _hook_ em qualquer componente para verificar se é para mostrar conteúdo adicional, desativar anúncios ou qualquer outra coisa que queiras oferecer a visitantes que usem o protocolo Web Monetization.
 
 No Interruptor, estamos só a começar a implementar isto. Por isso, para já, temos apenas um componente `WebMonetizationToaster` que mostra uma notificação a dizer "Obrigado" quando o Web Monetization está ativo.
-
 
 ```tsx
 import React, { useEffect } from 'react'
@@ -216,4 +215,3 @@ E parece-se assim:
 />
 
 Para já, é tudo o que temos, mas vamos desenvolver novas funcionalidades nos próximos meses e escrever sobre elas aqui - por isso, não percas o próximo artigo.
-
