@@ -32,7 +32,6 @@ export const Footer: React.FC = () => {
           href={t('footer.licence.link')}
           className="flex flex-row justify-center"
           title={t('footer.licence.title')}
-          isExternal
         >
           {siteConfig.licence.iconPaths.map((path) => (
             <span key={path} className="mx-px">
@@ -47,7 +46,7 @@ export const Footer: React.FC = () => {
       <div className="flex justify-center items-start px-4 space-x-4">
         {socialLinks.map(({ href, text, Icon }) => {
           return (
-            <Link key={href} href={href} title={text} isExternal>
+            <Link key={href} href={href} title={text}>
               <Icon aria-label={text} strokeWidth="0.1rem" size={24} />
               <span className="sr-only">{text}</span>
             </Link>

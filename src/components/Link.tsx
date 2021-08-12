@@ -1,20 +1,18 @@
-import NextLink, { LinkProps } from 'next/link'
+import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 
-type Props = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> &
-  (
-    | LinkProps
-    | {
-        isExternal: true
-        href: string
-      }
-  )
+type HTMLAnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>
 
-export const Link: React.FC<Props> = ({ children, ...props }) => {
-  if ('isExternal' in props) {
-    const { isExternal, href, ...anchorProps } = props
+type LinkProps = Omit<HTMLAnchorProps, 'href'> & NextLinkProps
+
+export const Link: React.FC<LinkProps> = ({ children, href, ...props }) => {
+  if (typeof href === 'string' && /^(http|mailto|tel)/.test(href)) {
+    const isExternalLink = /^http/.test(href)
+    const extraAnchorProps: HTMLAnchorProps = isExternalLink
+      ? { target: '_blank', rel: 'noopener noreferrer' }
+      : {}
 
     return (
-      <a {...anchorProps} href={href} target="_blank" rel="noopener noreferrer">
+      <a {...props} {...extraAnchorProps} href={href}>
         {children}
       </a>
     )
@@ -27,7 +25,6 @@ export const Link: React.FC<Props> = ({ children, ...props }) => {
     shallow,
     passHref,
     prefetch,
-    href,
     locale,
     ...anchorProps
   } = props
@@ -43,7 +40,6 @@ export const Link: React.FC<Props> = ({ children, ...props }) => {
       prefetch={prefetch}
       locale={locale}
     >
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a {...anchorProps}>{children}</a>
     </NextLink>
   )
