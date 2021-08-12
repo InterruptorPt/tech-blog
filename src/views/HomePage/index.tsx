@@ -25,7 +25,7 @@ export const HomePage: React.FC<HomePageProps> = ({ posts }) => {
           const { title, date, description } = post.data
 
           return (
-            <li key={post.slug}>
+            <li key={post.slug} data-testid={post.slug}>
               <article
                 className="space-y-2"
                 itemScope
