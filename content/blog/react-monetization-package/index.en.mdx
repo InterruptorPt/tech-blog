@@ -1,0 +1,30 @@
+---
+title: Our React Web Monetization library is on NPM
+date: '2021-08-12'
+author: Ciaran Edwards
+description: All the code from part 2 of our Web Monetization tutorial in a nice little package.
+image: /images/package-bench-accounting.jpg
+imageCredit: Photo by <a href="https://unsplash.com/@benchaccounting?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bench Accounting</a> on <a href="https://unsplash.com/s/photos/package?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+imageAlt: Man getting a package ready for delivery
+---
+
+We've released the code from ["Web Monetization: Part 2 - Checking it's active"](/en/blog/web-monetization-part-two-checking-its-active) as a [package on npm](https://www.npmjs.com/package/@interruptor/react-monetization). The package currently gives you two things:
+
+- the `WebMonetizationProvider` for setting up the event listeners needed for tracking web monetization events
+
+```jsx
+const MyApp = ({ children }) => {
+  return <WebMonetizationProvider>{children}</WebMonetizationProvider>
+}
+```
+
+- the `useWebMonetization` hook for reading the web monetization state in your components.
+
+```jsx
+const {
+  isActive,
+  state, // either "pending", "started" or "stopped"
+} = useWebMonetization()
+```
+
+If you want to check it out, you can find the [package on npm](https://www.npmjs.com/package/@interruptor/react-monetization) and the [source code on GitHub](https://github.com/InterruptorPt/react-monetization).
