@@ -4,7 +4,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { withStaticI18n } from 'i18n'
 
 export function enhanceStaticProps<
-  P extends { [key: string]: any } = { [key: string]: any },
+  P extends { [key: string]: unknown } = { [key: string]: unknown },
   Q extends ParsedUrlQuery = ParsedUrlQuery,
 >(
   getStaticProps: GetStaticProps<P, Q>,

@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ParsedUrlQuery } from 'querystring'
 
 export function withStaticI18n<
-  TProps extends { [key: string]: any } = { [key: string]: any },
+  TProps extends { [key: string]: unknown } = { [key: string]: unknown },
   TQuery extends ParsedUrlQuery = ParsedUrlQuery,
 >(
   getStaticPropsFn: GetStaticProps<TProps, TQuery>,
