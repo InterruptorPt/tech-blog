@@ -116,7 +116,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
         <MDXRemote {...source} />
       </article>
 
-      <nav className="border-t-2 p-4 mt-4 md:mt-8">
+      <nav className="border-t-2 p-4 pt-8 mt-8">
         <LinksToOtherPosts previous={links.previous} next={links.next} />
       </nav>
     </>

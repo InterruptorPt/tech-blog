@@ -21,8 +21,9 @@ export const LinksToOtherPosts: React.FC<LinksToOtherPostsProps> = ({
   return (
     <ul
       className={clsx(
-        'flex flex-col justify-center items-center',
+        'flex flex-col justify-center items-start',
         'md:flex-row md:justify-between',
+        'space-y-4 md:space-y-0',
         'font-display font-bold',
       )}
     >
@@ -31,10 +32,10 @@ export const LinksToOtherPosts: React.FC<LinksToOtherPostsProps> = ({
 
         const isLinkToPrevious = index === 0
         const iconLeft = isLinkToPrevious && (
-          <ChevronLeft size={16} strokeWidth={3} />
+          <ChevronLeft className="inline" size={16} strokeWidth={3} />
         )
         const iconRight = !isLinkToPrevious && (
-          <ChevronRight size={16} strokeWidth={3} />
+          <ChevronRight className="inline" size={16} strokeWidth={3} />
         )
 
         return (
@@ -42,10 +43,7 @@ export const LinksToOtherPosts: React.FC<LinksToOtherPostsProps> = ({
             key={link.slug}
             className={isLinkToPrevious ? 'md:mr-auto' : 'md:ml-auto'}
           >
-            <Link
-              href={`/blog/${link.slug}`}
-              className="flex items-center space-x-1"
-            >
+            <Link href={`/blog/${link.slug}`} className="space-x-1">
               {iconLeft}
               <span className="chunky-underline-violet-200 dark:chunky-underline-violet-600">
                 {link.title}
