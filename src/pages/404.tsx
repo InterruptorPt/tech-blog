@@ -9,11 +9,11 @@ const Custom404: React.FC = () => {
 
   return (
     <div className="container p-4">
-      <h1 className="text-xl md:text-4xl mb-4 md:mb-12 leading-tight text-center">
+      <h1 className="mb-4 md:mb-12 text-xl md:text-4xl leading-tight text-center">
         {t('error.404')}
       </h1>
       <img
-        className="w-full object-contain"
+        className="object-contain w-full"
         src="/images/undraw_page_not_found_hiding.svg"
         alt=""
       />

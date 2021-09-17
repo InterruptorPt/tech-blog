@@ -2,17 +2,16 @@ const fs = require('fs')
 const tsconfig = require('./tsconfig.json')
 
 module.exports = {
-  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+  parser: '@typescript-eslint/parser',
   extends: [
-    'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
     'prettier',
-    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
     'plugin:jsx-a11y/recommended',
-    // 'plugin:import/errors',
-    // 'plugin:import/warnings',
     'plugin:import/typescript',
     'plugin:@next/next/recommended',
+    'plugin:tailwindcss/recommended',
+    'plugin:prettier/recommended',
   ],
   plugins: [
     'import',
@@ -21,36 +20,24 @@ module.exports = {
     'react-hooks',
     'testing-library',
     'simple-import-sort',
+    'tailwindcss',
   ],
   parserOptions: {
-    ecmaVersion: 2019, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
+    ecmaVersion: 2019,
+    sourceType: 'module',
     ecmaFeatures: {
-      jsx: true, // Allows for the parsing of JSX
+      jsx: true,
     },
     project: ['./tsconfig.json'],
   },
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    // e.g. '@typescript-eslint/explicit-function-return-type': 'off',
-    'prettier/prettier': ['error', require('./.prettierrc.json')],
     curly: ['error', 'multi-line', 'consistent'],
     'import/first': 'error',
     'import/no-duplicates': 'error',
     'jsx-a11y/media-has-caption': 'off',
     'object-shorthand': 'error',
-    'padding-line-between-statements': [
-      'error',
-      { blankLine: 'always', prev: '*', next: 'return' },
-      { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
-      { blankLine: 'any', prev: ['const', 'let', 'var'], next: 'if' },
-      {
-        blankLine: 'any',
-        prev: ['const', 'let', 'var'],
-        next: ['const', 'let', 'var'],
-      },
-    ],
     'prefer-const': ['error', { destructuring: 'all' }],
+    'prettier/prettier': ['error', require('./.prettierrc.json')],
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     'react/display-name': 'off',
     'react/prop-types': 'off',
@@ -71,7 +58,7 @@ module.exports = {
       },
     ],
     'react/jsx-curly-brace-presence': ['error', 'never'],
-    'react/react-in-jsx-scope': 'off', // react 17 🎉
+    'react/react-in-jsx-scope': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'simple-import-sort/imports': [
@@ -96,6 +83,11 @@ module.exports = {
           ['^.+\\.s?css$'],
         ],
       },
+    ],
+    'tailwindcss/classnames-order': 'error',
+    'tailwindcss/no-custom-classname': [
+      'error',
+      { whitelist: ['chunky\\-underline\\-(violet|lime)\\-\\d{3}'] },
     ],
 
     '@typescript-eslint/no-unused-vars': [

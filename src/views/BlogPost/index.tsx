@@ -73,7 +73,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
           </div>
           {!!imageCredit && (
             <figcaption
-              className="font-display font-medium text-xs text-right py-1 text-violet-600 dark:text-violet-200"
+              className="py-1 font-display text-xs font-medium text-right text-violet-600 dark:text-violet-200"
               dangerouslySetInnerHTML={{ __html: imageCredit }}
             />
           )}
@@ -81,7 +81,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
       )}
 
       <article
-        className="prose lg:prose-lg dark:prose-dark mx-auto"
+        className="mx-auto prose dark:prose-dark lg:prose-lg"
         itemScope
         itemType="http://schema.org/Article"
       >
@@ -96,13 +96,13 @@ export const BlogPost: React.FC<BlogPostProps> = ({
             <time
               data-testid="firstPublishedDate"
               dateTime={date}
-              className="block my-4 text-sm font-display font-bold text-violet-600 dark:text-lime"
+              className="block my-4 font-display text-sm font-bold text-violet-600 dark:text-lime"
             >
               {formatDate(date)}
             </time>
           )}
           {author && (
-            <p className="text-sm font-display">
+            <p className="font-display text-sm">
               <span className="mr-1">
                 {t('post.header.author', { author })}
               </span>
@@ -116,7 +116,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
         <MDXRemote {...source} />
       </article>
 
-      <nav className="border-t-2 p-4 pt-8 mt-8">
+      <nav className="p-4 pt-8 mt-8 border-t-2">
         <LinksToOtherPosts previous={links.previous} next={links.next} />
       </nav>
     </>

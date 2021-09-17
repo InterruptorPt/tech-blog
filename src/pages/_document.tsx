@@ -1,23 +1,8 @@
-import Document, {
-  DocumentContext,
-  DocumentInitialProps,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from 'next/document'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 import { siteConfig } from 'config/site'
 
 class MyDocument extends Document {
-  static async getInitialProps(
-    ctx: DocumentContext,
-  ): Promise<DocumentInitialProps> {
-    const initialProps = await Document.getInitialProps(ctx)
-
-    return { ...initialProps }
-  }
-
   render(): JSX.Element {
     return (
       <Html className="dark">
@@ -63,7 +48,7 @@ class MyDocument extends Document {
             />
           )}
         </Head>
-        <body className="bg-white text-black dark:bg-violet-900 dark:text-white">
+        <body className="text-black dark:text-white bg-white dark:bg-violet-900">
           <div className="max-w-full">
             <Main />
           </div>

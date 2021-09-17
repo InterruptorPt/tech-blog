@@ -9,7 +9,7 @@ const Custom500: React.FC = () => {
 
   return (
     <div className="container p-4">
-      <h1 className="text-xl md:text-4xl mb-4 md:mb-12 leading-tight text-center">
+      <h1 className="mb-4 md:mb-12 text-xl md:text-4xl leading-tight text-center">
         {t('error.500')}
       </h1>
       <img

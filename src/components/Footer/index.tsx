@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
     <footer
       className={clsx(
         'flex flex-col items-center py-8 mt-8 md:mt-12 space-y-4',
-        'bg-black text-white font-display',
+        'font-display text-white bg-black',
       )}
     >
       <Link href={siteConfig.mainSiteURL}>

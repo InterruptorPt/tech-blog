@@ -16,7 +16,7 @@ export const LocaleChanger: React.FC = () => {
             key={locale}
             href={router.asPath}
             locale={locale}
-            className="uppercase font-display text-base"
+            className="font-display text-base uppercase"
           >
             {locale}
           </Link>

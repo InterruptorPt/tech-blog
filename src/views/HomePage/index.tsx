@@ -20,7 +20,7 @@ export const HomePage: React.FC<HomePageProps> = ({ posts }) => {
 
   return (
     <>
-      <ul className="max-w-screen-sm mx-auto list-none my-4 md:my-8 space-y-8">
+      <ul className="my-4 md:my-8 mx-auto space-y-8 max-w-screen-sm list-none">
         {posts.map((post) => {
           const { title, date, description } = post.data
 
@@ -32,7 +32,7 @@ export const HomePage: React.FC<HomePageProps> = ({ posts }) => {
                 itemType="http://schema.org/Article"
               >
                 <header className="space-y-2">
-                  <h2 className="text-xl md:text-2xl font-bold inline">
+                  <h2 className="inline text-xl md:text-2xl font-bold">
                     <Link
                       href={`/blog/${post.slug}`}
                       className="chunky-underline-violet-200 dark:chunky-underline-violet-600"
@@ -42,7 +42,7 @@ export const HomePage: React.FC<HomePageProps> = ({ posts }) => {
                     </Link>
                   </h2>
                   {date && (
-                    <small className="block text-xs font-display font-semibold text-violet-700 dark:text-lime">
+                    <small className="block font-display text-xs font-semibold text-violet-700 dark:text-lime">
                       {formatDate(date)}
                     </small>
                   )}

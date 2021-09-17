@@ -20,7 +20,7 @@ export const Layout: React.FC = (props) => {
       href="/"
       className={clsx(
         'flex flex-col items-start',
-        'font-display font-normal text-xl text-violet-700 dark:text-violet-200',
+        'font-display text-xl font-normal text-violet-700 dark:text-violet-200',
         '!bg-none origin-top-left',
         { 'scale-75': !isHomePage },
       )}
@@ -48,7 +48,7 @@ export const Layout: React.FC = (props) => {
         className={clsx(
           'flex justify-between items-start',
           'w-full max-w-screen-md',
-          'mx-auto my-4 md:my-8 px-4 space-x-4',
+          'px-4 my-4 md:my-8 mx-auto space-x-4',
         )}
       >
         {isHomePage ? <h1>{homepageLink}</h1> : homepageLink}
@@ -59,7 +59,7 @@ export const Layout: React.FC = (props) => {
       </header>
       <CustomMDXProvider>
         <main
-          className="flex-grow w-full max-w-screen-md mx-auto px-4"
+          className="flex-grow px-4 mx-auto w-full max-w-screen-md"
           {...props}
         />
       </CustomMDXProvider>
