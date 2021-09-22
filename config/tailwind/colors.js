@@ -1,3 +1,5 @@
+const { blueGray, emerald, orange } = require('tailwindcss/colors')
+
 module.exports = {
   // violet: #7972AB; <-- Original purple color
   violet: {
@@ -54,4 +56,7 @@ module.exports = {
     900: '#813810',
   },
   white: '#fff',
+  blueGray,
+  emerald,
+  orange,
 }
