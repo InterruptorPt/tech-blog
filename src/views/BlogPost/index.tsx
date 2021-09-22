@@ -69,6 +69,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
               objectFit="cover"
               sizes="600px"
               quality={90}
+              priority
             />
           </div>
           {!!imageCredit && (
