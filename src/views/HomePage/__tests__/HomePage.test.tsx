@@ -1,8 +1,10 @@
-import { getPage } from 'next-page-tester'
 import { screen, within } from '@testing-library/react'
 import fs from 'fs'
 
+import HomePage, { getStaticProps } from 'pages'
 import { BLOG_FILES_FOLDER } from 'utils/blog'
+import { assertPropsInResult } from 'utils/next/assertPropsInResult'
+import { render } from 'utils/tests/render'
 
 const LOCALES = ['en', 'pt']
 
@@ -10,9 +12,10 @@ const allBlogPosts = fs.readdirSync(BLOG_FILES_FOLDER)
 
 describe.each(LOCALES)('Home page %s', (locale) => {
   beforeEach(async () => {
-    const { render } = await getPage({ route: `/${locale}` })
+    const result = await getStaticProps({ locale })
+    assertPropsInResult(result)
 
-    render()
+    render(<HomePage {...result.props} />)
   })
 
   it('renders without crashing', () => {
@@ -25,7 +28,7 @@ describe.each(LOCALES)('Home page %s', (locale) => {
       const title = within(article).getByRole('heading')
 
       expect(title).toBeInTheDocument()
-      expect(title.textContent).not.toBeEmpty()
+      expect(title.textContent?.trim()).not.toBe('')
     })
 
     it('has a link to the post', () => {

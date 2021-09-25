@@ -1,9 +1,15 @@
-import { getPage } from 'next-page-tester'
+import 'utils/mocks/react-i18next'
+
 import { screen, within } from '@testing-library/react'
 import fs from 'fs'
 import { GrayMatterFile } from 'gray-matter'
 
+import BlogPost, { getStaticProps } from 'pages/blog/[slug]'
 import { BLOG_FILES_FOLDER, readPostMarkdown } from 'utils/blog'
+import { assertPropsInResult } from 'utils/next/assertPropsInResult'
+import { render } from 'utils/tests/render'
+
+import { BlogPostProps } from '..'
 
 const LOCALES = ['en', 'pt']
 
@@ -13,15 +19,20 @@ const allBlogPosts = fs
 
 describe.each(allBlogPosts)('Post: $slug ($locale)', ({ locale, slug }) => {
   let markdown: GrayMatterFile<Buffer>
+  let pageProps: BlogPostProps
 
   beforeAll(async () => {
     markdown = (await readPostMarkdown({ locale, slug }))!
+    const result = await getStaticProps({
+      locale,
+      params: { slug },
+    })
+    assertPropsInResult(result)
+    pageProps = result.props
   })
 
   beforeEach(async () => {
-    const { render } = await getPage({ route: `/${locale}/blog/${slug}` })
-
-    render()
+    render(<BlogPost {...pageProps} />)
   })
 
   it('renders without crashing', () => {

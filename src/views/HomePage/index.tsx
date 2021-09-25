@@ -1,4 +1,5 @@
 import React from 'react'
+import { NextPage } from 'next'
 
 import { Link } from 'components/Link'
 import { useDateFormatter } from 'utils/dates/useDateFormatter'
@@ -11,7 +12,7 @@ export type HomePageProps = {
   }[]
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ posts }) => {
+export const HomePage: NextPage<HomePageProps> = ({ posts }) => {
   const formatDate = useDateFormatter({
     day: 'numeric',
     month: 'long',
