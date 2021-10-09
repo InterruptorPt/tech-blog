@@ -24,20 +24,6 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
-          <link
-            rel="preload"
-            href="/fonts/Manrope/Manrope-VariableFont_wght.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/Lora/Lora-VariableFont_wght.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin=""
-          />
           <link rel="manifest" href="/manifest.json" />
           <meta name="theme-color" content="#7972AB" />
           <meta name="color-scheme" content="dark light" />
