@@ -103,7 +103,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
             </time>
           )}
           {author && (
-            <p className="font-display text-sm">
+            <p className="font-display text-sm" data-testid="author">
               <span className="mr-1">
                 {t('post.header.author', { author })}
               </span>
