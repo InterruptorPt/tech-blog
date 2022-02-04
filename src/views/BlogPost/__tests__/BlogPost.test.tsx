@@ -50,9 +50,10 @@ describe.each(allBlogPosts)('Post: $slug ($locale)', ({ locale, slug }) => {
 
     expect(date).toBeInTheDocument()
 
+    const authorSection = within(article.getByTestId('author'))
     const { author, translator } = markdown.data
 
-    expect(article.getByText(new RegExp(author))).toBeInTheDocument()
+    expect(authorSection.getByText(new RegExp(author))).toBeInTheDocument()
     expect(translator).toSatisfy(
       (value) => !value || !!article.queryByText(new RegExp(value)),
     )
